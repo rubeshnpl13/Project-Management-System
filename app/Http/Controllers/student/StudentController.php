@@ -7,6 +7,7 @@ use App\Models\Backend\LogSheet;
 use App\Models\Backend\Project;
 use App\Models\Backend\Student;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class StudentController extends BackendBaseController
 {
@@ -17,11 +18,27 @@ class StudentController extends BackendBaseController
     {
        $this->model= new Student();
     }
+//    public function index($id)
+//    {
+//        $data_id = $id;
+//        $data['record'] = $this->model::find($id)->get();
+//        $data['student'] = $this->model::all();
+////        $data['log'] = LogSheet::all();
+//        $data['log'] = LogSheet::where('student_id', $id)->first();
+//        return view($this->__loadDataToView($this->base_view.'home'),compact('data','data_id'));
+//    }
+
+
     public function index($id)
     {
         $data['record'] = $this->model::find($id);
-        $data['log'] = LogSheet::where('student_id', $id)->first();
-        return view($this->__loadDataToView($this->base_view.'home'),compact('data'));
+//        $data['log'] = LogSheet::where('student_id', $id)->first();
+//       // $data['log'] = LogSheet::all();
+//        return view($this->__loadDataToView($this->base_view.'home'),compact('data','id'));
+
+        $users = DB::table('log_sheets')->where('student_id', $id)->select('id','project_id','student_id','topic','feedback','supervisor_approval_key','language_tools_project_id')->get();
+        return view($this->__loadDataToView($this->base_view.'home'),compact('users','data'));
+
     }
 
     public function create()

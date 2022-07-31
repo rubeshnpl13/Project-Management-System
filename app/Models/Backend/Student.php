@@ -15,8 +15,8 @@ class Student extends Model
     use softDeletes;
     protected $table='students';
     protected $fillable = ['name','email','password','semester','batch_id','program_id','user_id','created_by','updated_by'];
-    protected $filltable = ['name','email','password','semester','batch_id','created_by','user_id','updated_by'];
-    
+    protected $filltable = ['name','email','password','semester','batch_id','program_id','created_by','user_id','updated_by'];
+
     function createdBy()
     {
         return $this->belongsTo(User::class,'created_by','id');
@@ -33,4 +33,19 @@ class Student extends Model
     {
         return $this->belongsTo(Program::class,'program_id','id');
     }
+
+    function projectId()
+    {
+        return $this->belongsTo(\App\Models\Backend\Project::class);
+    }
+    function logsheet()
+    {
+        return $this->hasMany(\App\Models\Backend\LogSheet::class);
+    }
+
+    function studentId()
+    {
+        return $this->belongsTo(\App\Models\Backend\Student::class,'student_id','id');
+    }
 }
+

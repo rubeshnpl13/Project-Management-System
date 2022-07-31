@@ -7,8 +7,8 @@
         <div class="card table-card">
             <div class="card-header">
                 <h5>{{$module}}
-                <a href="{{route($base_route.'create')}}" class="btn btn-info">Create</a>
-              <a href="{{route($base_route.'trash')}}" class="btn btn-danger">Trash</a>
+                    <a href="{{route($base_route.'create')}}" class="btn btn-info">Create</a>
+                    <a href="{{route($base_route.'trash')}}" class="btn btn-danger">Trash</a>
                 </h5>
             </div>
             @if(session('success'))
@@ -27,6 +27,7 @@
                                     <thead>
                                     <tr>
                                         <th>#</th>
+                                        <th>topic</th>
                                         <th>project</th>
                                         <th>topic</th>
                                         <th>supervisor_approval_key</th>
@@ -36,7 +37,8 @@
                                     <tbody>
                                     @foreach($data['records'] as $record)
                                         <tr>
-                                        <td>{{$loop->index+1}}</td>
+                                            <td>{{$loop->index+1}}</td>
+                                            <td>{{$record->studentId->name}}</td>
                                             <td>{{$record->projectId->title}}</td>
                                             <td>{{$record->topic}}</td>
                                             <td>
@@ -46,17 +48,17 @@
                                                     <span class="text-danger"> Not Approved</span>
                                                 @endif
                                             </td>
-                                            
+
                                             <td>
-                                        <a href="{{route($base_route.'show',$record->id)}}" class="btn btn-primary">ViewDetails</a>
-                                        <a href="{{route($base_route.'edit',$record->id)}}"class="btn btn-warning">Edit</a>
-                                        <form action="{{route($base_route.'destroy',$record->id)}}" method="post" style="display:inline-block">
-                                        @method("delete")
-                                            @csrf
-                                            <input type="submit" class="btn btn-danger" value="Delete">
-                                        </form>
-                                        </td>
-                                    </tr>
+                                                <a href="{{route($base_route.'show',$record->id)}}" class="btn btn-primary">ViewDetails</a>
+                                                <a href="{{route($base_route.'edit',$record->id)}}"class="btn btn-warning">Edit</a>
+                                                <form action="{{route($base_route.'destroy',$record->id)}}" method="post" style="display:inline-block">
+                                                    @method("delete")
+                                                    @csrf
+                                                    <input type="submit" class="btn btn-danger" value="Delete">
+                                                </form>
+                                            </td>
+                                        </tr>
                                     @endforeach
                                     </tbody>
                                 </table>
@@ -75,3 +77,4 @@
 @endsection
 @section('js')
 @endsection
+
