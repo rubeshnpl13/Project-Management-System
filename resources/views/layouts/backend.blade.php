@@ -11,6 +11,8 @@
     <meta name="author" content="Phoenixcoded"/>
     <link rel="icon" href="{{asset('assets/images/favicon.ico')}}" type="image/x-icon">
     <link rel="stylesheet" href="{{asset('assets/css/style.css')}}">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     @yield('css')
 </head>
 <body class="">
@@ -22,7 +24,7 @@
                     <label>Navigation</label>
                 </li>
                 <li class="nav-item">
-                    <a href="index.html" class="nav-link "><span class="pcoded-micon"><i class="feather icon-home"></i></span><span class="pcoded-mtext">Dashboard</span></a>
+                    <a href="{{route('backend.dashboard.index')}}" class="nav-link "><span class="pcoded-micon"><i class="feather icon-home"></i></span><span class="pcoded-mtext">Dashboard</span></a>
                 </li>
                 <li class="nav-item pcoded-hasmenu">
                     <a href="#!" class="nav-link ">
@@ -32,8 +34,8 @@
                         <span class="pcoded-mtext">Programs</span>
                     </a>
                     <ul class="pcoded-submenu">
-                        <li><a href="{{route('backend.program.create')}}" target="_blank">Create</a></li>
-                        <li><a href="layout-horizontal.html" target="_blank">List</a></li>
+                        <li><a href="{{route('backend.program.create')}}" >Create</a></li>
+                        <li><a href="{{route('backend.program.index')}}" >list</a></li>
                     </ul>
                 </li>
                 <li class="nav-item pcoded-hasmenu">
@@ -44,8 +46,8 @@
                         <span class="pcoded-mtext">Courses</span>
                     </a>
                     <ul class="pcoded-submenu">
-                        <li><a href="layout-vertical.html" target="_blank">Create</a></li>
-                        <li><a href="layout-horizontal.html" target="_blank">List</a></li>
+                        <li><a href="{{route('backend.course.create')}}" >Create</a></li>
+                        <li><a href="{{route('backend.course.index')}}" >List</a></li>
                     </ul>
                 </li>
                 <li class="nav-item pcoded-hasmenu">
@@ -53,11 +55,145 @@
                         <span class="pcoded-micon">
                             <i class="feather icon-layout"></i>
                         </span>
-                        <span class="pcoded-mtext">Batches</span>
+                        <span class="pcoded-mtext">Batch</span>
                     </a>
                     <ul class="pcoded-submenu">
-                        <li><a href="layout-vertical.html" target="_blank">Create</a></li>
-                        <li><a href="layout-horizontal.html" target="_blank">List</a></li>
+                        <li><a href="{{route('backend.batch.create')}}" >Create</a></li>
+                        <li><a href="{{route('backend.batch.index')}}" >List</a></li>
+                    </ul>
+                </li>
+
+                <li class="nav-item pcoded-hasmenu">
+                    <a href="#!" class="nav-link ">
+                        <span class="pcoded-micon">
+                            <i class="feather icon-layout"></i>
+                        </span>
+                        <span class="pcoded-mtext">Supervisor Type</span>
+                    </a>
+                    <ul class="pcoded-submenu">
+                        <li><a href="{{route('backend.supervisor_type.create')}}" >Create</a></li>
+                        <li><a href="{{route('backend.supervisor_type.index')}}" >List</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item pcoded-hasmenu">
+                    <a href="#!" class="nav-link ">
+                        <span class="pcoded-micon">
+                            <i class="feather icon-layout"></i>
+                        </span>
+                        <span class="pcoded-mtext">Supervisor</span>
+                    </a>
+                    <ul class="pcoded-submenu">
+                        <li><a href="{{route('backend.supervisor.create')}}" >Create</a></li>
+                        <li><a href="{{route('backend.supervisor.index')}}" >List</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item pcoded-hasmenu">
+                    <a href="#!" class="nav-link ">
+                        <span class="pcoded-micon">
+                            <i class="feather icon-layout"></i>
+                        </span>
+                        <span class="pcoded-mtext">Student</span>
+                    </a>
+                    <ul class="pcoded-submenu">
+                        <li><a href="{{route('backend.student.create')}}" >Create</a></li>
+                        <li><a href="{{route('backend.student.index')}}" >List</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item pcoded-hasmenu">
+                    <a href="#!" class="nav-link ">
+                        <span class="pcoded-micon">
+                            <i class="feather icon-layout"></i>
+                        </span>
+                        <span class="pcoded-mtext">Project</span>
+                    </a>
+                    <ul class="pcoded-submenu">
+                        <li><a href="{{route('backend.project.create')}}" >Create</a></li>
+                        <li><a href="{{route('backend.project.index')}}" >List</a></li>
+                    </ul>
+                </li>
+
+                <li class="nav-item pcoded-hasmenu">
+                    <a href="#!" class="nav-link ">
+                        <span class="pcoded-micon">
+                            <i class="feather icon-layout"></i>
+                        </span>
+                        <span class="pcoded-mtext">language Tools Project</span>
+                    </a>
+                    <ul class="pcoded-submenu">
+                        <li><a href="{{route('backend.language_tools_project.create')}}" >Create</a></li>
+                        <li><a href="{{route('backend.language_tools_project.index')}}" >List</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item pcoded-hasmenu">
+                    <a href="#!" class="nav-link ">
+                        <span class="pcoded-micon">
+                            <i class="feather icon-layout"></i>
+                        </span>
+                        <span class="pcoded-mtext">Student Project</span>
+                    </a>
+                    <ul class="pcoded-submenu">
+                        <li><a href="{{route('backend.student_project.create')}}" >Create</a></li>
+                        <li><a href="{{route('backend.student_project.index')}}" >List</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item pcoded-hasmenu">
+                    <a href="#!" class="nav-link ">
+                        <span class="pcoded-micon">
+                            <i class="feather icon-layout"></i>
+                        </span>
+                        <span class="pcoded-mtext">Organizations</span>
+                    </a>
+                    <ul class="pcoded-submenu">
+                        <li><a href="{{route('backend.organizations.create')}}" >Create</a></li>
+                        <li><a href="{{route('backend.organizations.index')}}" >List</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item pcoded-hasmenu">
+                    <a href="#!" class="nav-link ">
+                        <span class="pcoded-micon">
+                            <i class="feather icon-layout"></i>
+                        </span>
+                        <span class="pcoded-mtext">Evaluation Criteria</span>
+                    </a>
+                    <ul class="pcoded-submenu">
+                        <li><a href="{{route('backend.evaluation_criteria.create')}}" >Create</a></li>
+                        <li><a href="{{route('backend.evaluation_criteria.index')}}" >List</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item pcoded-hasmenu">
+                    <a href="#!" class="nav-link ">
+                        <span class="pcoded-micon">
+                            <i class="feather icon-layout"></i>
+                        </span>
+                        <span class="pcoded-mtext"> Course Evaluation </span>
+                    </a>
+                    <ul class="pcoded-submenu">
+                        <li><a href="{{route('backend.course_evaluation_criteria.create')}}" >Create</a></li>
+                        <li><a href="{{route('backend.course_evaluation_criteria.index')}}" >List</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item pcoded-hasmenu">
+                    <a href="#!" class="nav-link ">
+                        <span class="pcoded-micon">
+                            <i class="feather icon-layout"></i>
+                        </span>
+                        <span class="pcoded-mtext">Evaluation </span>
+                    </a>
+                    <ul class="pcoded-submenu">
+                        <li><a href="{{route('backend.evaluation.create')}}" >Create</a></li>
+                        <li><a href="{{route('backend.evaluation.index')}}" >List</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item pcoded-hasmenu">
+                    <a href="#!" class="nav-link ">
+                        <span class="pcoded-micon">
+                            <i class="feather icon-layout"></i>
+                        </span>
+                        <span class="pcoded-mtext">Log Sheets</span>
+                    </a>
+                    <ul class="pcoded-submenu">
+                        <li><a href="{{route('backend.log_sheet.create')}}" >Create</a></li>
+                        <li><a href="{{route('backend.log_sheet.index')}}" >List</a></li>
                     </ul>
                 </li>
             </ul>

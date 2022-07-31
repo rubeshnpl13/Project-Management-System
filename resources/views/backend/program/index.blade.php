@@ -6,11 +6,18 @@
     <div class="col-xl-12 col-md-12">
         <div class="card table-card">
             <div class="card-header">
-                <h5>Projects
+                <h5>{{$module}}
                 <a href="{{route($base_route.'create')}}" class="btn btn-info">Create</a>
               <a href="{{route($base_route.'trash')}}" class="btn btn-info">Trash</a>
                 </h5>
             </div>
+            @if(session('success'))
+                <p style="background: green; padding:10px">{{session('success')}}</p>
+
+            @endif
+            @if(session('error'))
+                <p style="background: red">{{session('error')}}</p>
+            @endif
             <div class="col-xl-12 col-md-12">
                 <div class="row">
                     <div class="col-md-12">
@@ -32,7 +39,9 @@
                                         <td>{{$loop->index+1}}</td>
                                         <td>{{$record->title}}</td>
                                         <td>{{$record->no_of_semester}}</td>
-                                        <td>{{$record->status}}</td>
+                                            <td>
+                                                @include('backend.status',['status'=>$record->status])
+                                            </td>
                                         <td>
                                         <a href="{{route($base_route.'show',$record->id)}}" class="btn btn-primary">ViewDetails</a>
                                         <a href="{{route($base_route.'edit',$record->id)}}"class="btn btn-warning">Edit</a>

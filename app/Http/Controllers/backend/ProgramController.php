@@ -67,28 +67,20 @@ class ProgramController extends BackendBaseController
     public function update(Request $request, $id)
     {
         try{
-            $request->validate([
-                'title'=>'required',
-                'slug'=>'required'
-            ]);
-            $data['record']=$this->model::find($id);
-            if(!$data['record' ]){
-                request()->session()->flash('error',"Error:Invalid Request");
+            $data = $this->model->find($id);
+            request()->request->add(['updated_by'=>auth()->user()->id]);
+            if(!$data)
+            {
+                request()->session()->flash('error','Error: Invalid Request');
                 return redirect()->route($this->__loadDataToView($this->base_route.'index'));
             }
-            $request->request->add(['updated_by'=>auth()->user()->id]);
-            $record=$data['record']->update($request->all());
-            if($record)
-            {
-                request()->session()->flash('success',($this->__loadDataToView($this->module))."Updated");
+            if ($data->update($request->all())){
+                $request->session()->flash('success','Updated Successfully!!');
             }else{
-                request()->session()->flash('error',($this->__loadDataToView($this->module))."Updation Failed ");
-
+                $request->session()->flash('error','Update Failed!!');
             }
-        }
-        catch(\Exception $exception){
-            request()->session()->flash('error',"Error:".$exception->getMessage());
-
+        }catch(\Exception $exception){
+            $request->session()->flash('error','Error: ' . $exception->getMessage());
         }
         return redirect()->route($this->__loadDataToView($this->base_route.'index'));
     }

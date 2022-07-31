@@ -15,9 +15,10 @@ return new class extends Migration
     {
         Schema::create('courses', function (Blueprint $table) {
             $table->id();
-            $table->BigInteger('program_id')->unsigned(); 
+            $table->BigInteger('program_id')->unsigned();
             $table->string('semester');
-            $table->integer('code');
+            $table->string('code');
+            $table->integer('status')->default(0);
             $table->string('name', 100);
             $table->foreign('program_id')->references('id')->on('programs');
             $table->unsignedBigInteger('created_by');

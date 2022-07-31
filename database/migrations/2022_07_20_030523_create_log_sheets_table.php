@@ -15,13 +15,17 @@ return new class extends Migration
     {
         Schema::create('log_sheets', function (Blueprint $table) {
             $table->id();
-            $table->BigInteger('project_id')->unsigned(); 
+            $table->BigInteger('project_id')->unsigned();
             $table->foreign('project_id')->references('id')->on('projects');
             $table->string('meeting_date');
             $table->string('topic');
             $table->string('feedback');
             $table->string('next_meeting_target');
             $table->string('supervisor_approval_key');
+            $table->unsignedBigInteger('language_tools_project_id')->nullable();
+            $table->foreign('language_tools_project_id')->references('id')->on('language_tools_project');
+            $table->unsignedBigInteger('student_id')->nullable();
+            $table->foreign('student_id')->references('id')->on('students');
             $table->unsignedBigInteger('created_by');
             $table->unsignedBigInteger('updated_by')->nullable();
             $table->foreign('created_by')->references('id')->on('users');

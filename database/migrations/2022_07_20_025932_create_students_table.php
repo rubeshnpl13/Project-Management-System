@@ -17,13 +17,14 @@ return new class extends Migration
             $table->id();
             $table->string('name', 50);
             $table->string('email', 50);
-            $table->BigInteger('batch_id')->unsigned(); 
+            $table->integer('semester');
+            $table->BigInteger('program_id')->unsigned();
+            $table->BigInteger('batch_id')->unsigned();
             $table->foreign('batch_id')->references('id')->on('batches');
-            $table->string('enroll_year');
-            $table->unsignedBigInteger('created_by');
-            $table->unsignedBigInteger('updated_by')->nullable();
-            $table->foreign('created_by')->references('id')->on('users');
-            $table->foreign('updated_by')->references('id')->on('users');
+            $table->foreign('program_id')->references('id')->on('programs');
+
+            $table->BigInteger('user_id')->unsigned();
+            $table->foreign('user_id')->references('id')->on('users');
             $table->softDeletes();
             $table->timestamps();
         });

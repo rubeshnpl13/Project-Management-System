@@ -23,8 +23,7 @@ return new class extends Migration
             $table->string('contact_person_name', 50);
             $table->string('contact_person_email', 50);
             $table->string('contact_person_phone', 30);
-
-            $table->string('logo-n');
+            $table->string('logo')->nullable();
             $table->unsignedBigInteger('created_by');
             $table->unsignedBigInteger('updated_by')->nullable();
             $table->foreign('created_by')->references('id')->on('users');

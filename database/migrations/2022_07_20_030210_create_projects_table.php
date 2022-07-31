@@ -15,13 +15,13 @@ return new class extends Migration
     {
         Schema::create('projects', function (Blueprint $table) {
             $table->id();
-            $table->BigInteger('batch_id')->unsigned(); 
+            $table->BigInteger('batch_id')->unsigned();
             $table->foreign('batch_id')->references('id')->on('batches');
             $table->string('title');
-            // $table->BigInteger('academic_supervisor_id')->unsigned(); 
-            // $table->foreign('supervisor_id')->references('id')->on('supervisors');
-            // $table->BigInteger('technical_supervisor_id')->unsigned(); 
-            // $table->foreign('supervisor_id')->references('id')->on('supervisors');
+            $table->BigInteger('supervisor_id')->unsigned();
+            $table->BigInteger('organization_id')->unsigned()->nullable;
+            $table->foreign('supervisor_id')->references('id')->on('supervisors');
+            $table->foreign('organization_id')->references('id')->on('organizations');
             $table->unsignedBigInteger('created_by');
             $table->unsignedBigInteger('updated_by')->nullable();
             $table->foreign('created_by')->references('id')->on('users');

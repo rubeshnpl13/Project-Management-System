@@ -3,7 +3,7 @@
         {!!Form::label('title','Title')!!}
         {!!Form::text ('title',null,['class'=> 'form-control','placeholder'=>'Title'])!!}
         @error('title')
-        <span class="text-danger">{{$message}}</span> 
+        <span class="text-danger">{{$message}}</span>
         @enderror
     </div>
     <div class="form-group">
@@ -15,11 +15,14 @@
     </div>
     <div class="form-group">
         {!!Form::label('status','Status')!!} <br>
-        <input type="radio" name="status" value="1"> Enable<br>
-        <input type="radio" name="status" value="2" checked> Disable<br>
+        {!!Form::radio('status','1',null)!!}Active
+        {!!Form::radio('status','0',true)!!}Deactive
+        @error('status')
+        <span class="text-danger">{{$message}}</span>
+        @enderror
     </div>
 </div>
 <div class="card-footer">
     {!!Form::submit($button .''.$module,['class'=>'btn btn-success'])!!}
-    {!!Form::reset('Clear'.''.$module,['class'=>'btn btn-danger'])!!} <br>
+    {!!Form::reset('Clear'.''.$module,['class'=>'btn btn-danger'])!!}
 </div>

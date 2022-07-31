@@ -13,13 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('batch_courses', function (Blueprint $table) {
+        Schema::create('roles', function (Blueprint $table) {
             $table->id();
-            $table->BigInteger('batch_id')->unsigned(); 
-            $table->foreign('batch_id')->references('id')->on('batches');
-            $table->BigInteger('course_id')->unsigned(); 
-            $table->foreign('course_id')->references('id')->on('courses');
-
+            $table->string('title');
+            $table->softDeletes();
             $table->timestamps();
         });
     }
@@ -31,6 +28,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('batch_courses');
+        Schema::dropIfExists('roles');
     }
 };
